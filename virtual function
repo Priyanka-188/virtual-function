@@ -1,0 +1,75 @@
+# include<iostream>
+using namespace std;
+
+class CWH
+{
+protected:
+    string title;
+    float rating;
+public:
+    CWH(string s, float r)
+    {
+        title = s;
+        rating = r;
+    }
+    virtual void display()
+    {
+     cout<<"Base display"<<endl;
+    }
+};
+class CWH_vidio : public CWH
+{
+    float vidiolength;
+public:
+    CWH_vidio(string s,float r,  float vl):CWH(s,r)
+    {
+        vidiolength = vl;
+    }
+    void display()
+    {
+        cout<<" \nTHe vidio title is : " <<title<<endl;
+        cout<<" THe vidio ratind is : " <<rating<<" Out of 5 stars"<<endl;
+        cout<<" The length of the vidio is " << vidiolength<<" minutes"<<endl;
+    }
+};
+class CWH_text : public CWH
+{
+    int words;
+public :
+    CWH_text(string s, float r,  int wl): CWH(s,r)
+    {
+        words = wl;
+    }
+    void display()
+    {
+        cout<<" \n\nTHe text title is : " <<title<<endl;
+        cout<<" THe text rating is : " <<rating <<" Out of 5 stars"<<endl;
+        cout<<" The length of the text is " << words<< "words"<<endl;
+    }
+};
+int main()
+{
+    string title;
+    float rating, vidlength;
+    int words;
+    title = "How's the josh ?";
+    rating = 4.32;
+    vidlength = 9.56;
+
+    CWH_vidio djvidio(title, rating, vidlength);
+
+    title = "motivational notes";
+    rating = 5.0;
+    words = 963;
+
+    CWH_text djtext(title, rating, words);
+
+    CWH* tuts[2];
+    tuts[0] = &djvidio;
+    tuts[1] = &djtext;
+
+    tuts[0]-> display();
+    tuts[1]-> display();
+
+    return 0;
+}
